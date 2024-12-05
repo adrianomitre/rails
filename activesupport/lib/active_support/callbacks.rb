@@ -272,7 +272,12 @@ module ActiveSupport
         def duplicates?(other)
           case @filter
           when Symbol
-            matches?(other.kind, other.filter)
+            if matches?(other.kind, other.filter)
+              puts "WARNING: overriding"
+              false
+            else
+              false
+            end
           else
             false
           end
